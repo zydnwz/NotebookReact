@@ -1,0 +1,23 @@
+/* SearchBar.css */
+.search-bar {
+  display: flex;
+  flex-direction: column; /* Change flex-direction to column */
+  align-items: flex-start; /* Align items to the start */
+  margin-bottom: 20px;
+}
+
+.search-bar input[type="text"] {
+  margin-bottom: 10px; /* Add margin between input and labels */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-bar div {
+  display: flex; /* Ensure labels are displayed inline */
+  align-items: center;
+}
+
+.search-bar div > div {
+  margin-right: 10px; /* Add margin between labels */
+}

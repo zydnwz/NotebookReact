@@ -1,20 +1,22 @@
-import React from 'react';
+// App.js
+import React from "react";
+import { NoteContextProvider } from "./contexts/NoteContext";
+import NoteList from "./components/NoteList";
+import SearchBar from "./components/SearchBar";
+import AddNoteModal from "./components/AddNoteModal";
 import './App.css';
-import Header from './components/Header';
-import NoteList from './components/NoteList';
-import AddNoteButton from './components/AddNoteButton';
-import NotesProvider from './context/NotesProvider';
 
-function App() {
+const App = () => {
   return (
-    <NotesProvider>
-      <div className="App">
-        <Header />
+    <NoteContextProvider>
+      <div className="app">
+        <h1>Notebook</h1>
+        <SearchBar />
+        <AddNoteModal />
         <NoteList />
-        <AddNoteButton />
       </div>
-    </NotesProvider>
+    </NoteContextProvider>
   );
-}
+};
 
 export default App;
