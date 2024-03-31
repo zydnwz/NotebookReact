@@ -1,4 +1,3 @@
-// App.js
 import React from "react";
 import { NoteContextProvider } from "./contexts/NoteContext";
 import NoteList from "./components/NoteList";

@@ -1,27 +1,29 @@
-// contexts/NoteContext.js
 import React, { createContext, useState, useEffect } from 'react';
 
 const NoteContext = createContext();
 
 const NoteContextProvider = ({ children }) => {
   const [notes, setNotes] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Change here
+  const [isModalOpen, setIsModalOpen] = useState(false); 
   const [searchTerm, setSearchTerm] = useState('');
   const [totalNotes, setTotalNotes] = useState(0);
   const [shownNotes, setShownNotes] = useState(0);
   const [modalNote, setModalNote] = useState(null);
-
+  const [filteredNotes, setFilteredNotes] = useState([]); 
+  
   useEffect(() => {
+    const filtered = notes.filter(note => note.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    setFilteredNotes(filtered);
     setTotalNotes(notes.length);
-    setShownNotes(notes.filter(note => note.title.toLowerCase().includes(searchTerm.toLowerCase())).length);
+    setShownNotes(filtered.length); 
   }, [notes, searchTerm]);
 
   const addNote = (title, description) => {
-    setNotes([...notes, { id: Date.now(), title, description }]);
+    setNotes(prevNotes => [...prevNotes, { id: Date.now(), title, description }]);
   };
 
   const deleteNote = id => {
-    setNotes(notes.filter(note => note.id !== id));
+    setNotes(prevNotes => prevNotes.filter(note => note.id !== id));
   };
 
   const openEditModal = note => {
@@ -56,6 +58,7 @@ const NoteContextProvider = ({ children }) => {
   return (
     <NoteContext.Provider value={{ 
       notes, 
+      filteredNotes, 
       addNote, 
       deleteNote, 
       openEditModal, 

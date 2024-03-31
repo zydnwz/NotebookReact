@@ -1,20 +1,28 @@
-// components/SearchBar.js
-import React, { useContext } from 'react';
-import { NoteContext } from '../contexts/NoteContext';
-import './SearchBar.css';
+import React, { useContext, useState } from "react";
+import { NoteContext } from "../contexts/NoteContext";
+import "./SearchBar.css";
 
 const SearchBar = () => {
-  const { totalNotes, shownNotes, toggleModal, searchNotes } = useContext(NoteContext);
+  const { totalNotes, shownNotes, toggleModal } = useContext(NoteContext);
+  const [searchQuery, setSearchQuery] = useState(""); 
+  const { searchNotes } = useContext(NoteContext);
+
+  const handleSearch = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    searchNotes(query); 
+  };
 
   return (
     <div className="search-bar">
+      <div className="search-label">Search Notes:</div>
       <input
         type="text"
-        placeholder="Search Notes..."
-        onChange={(e) => searchNotes(e.target.value)}
+        value={searchQuery} 
+        onChange={handleSearch} 
       />
-      <div>Total: {totalNotes} </div>
-      <div>Shown: {shownNotes} </div>
+      <div>Total Notes: {totalNotes} </div>
+      <div>Showing: {shownNotes} </div>
       <button onClick={toggleModal}>Add New Note</button>
     </div>
   );

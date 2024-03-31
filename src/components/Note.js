@@ -1,6 +1,6 @@
-// components/Note.js
 import React, { useContext } from "react";
 import { NoteContext } from "../contexts/NoteContext";
+import './Note.css';
 
 const Note = ({ note }) => {
   const { deleteNote, openEditModal } = useContext(NoteContext);

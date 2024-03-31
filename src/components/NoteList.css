@@ -1,0 +1,47 @@
+.note-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  margin-right: 20px;
+}
+
+.note {
+  border: none; 
+  padding: 15px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.note h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 1rem;
+}
+
+.note p {
+  margin: 0;
+  flex-grow: 1;
+  font-size: 0.9rem;
+}
+
+.note button {
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  border: 1px solid #ccc;
+}
+
+.note button:first-child {
+  margin-right: 5px;
+}
+
+.note button:last-child {
+  margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+  .note-list {
+    grid-template-columns: 1fr;
+  }
+}
